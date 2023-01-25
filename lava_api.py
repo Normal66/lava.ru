@@ -50,7 +50,7 @@ def get_pay_method():
 
 
 def create_order(amount: float = 0.00, order_id: str = 'Идентификатор платежа', purpose: str = 'Назначение платежа'):
-    result = {'success': False, 'invoice_id': None}
+    result = {'success': False, 'invoice_id': None, 'url': None}
     data = {
         "comment": purpose,
         "customFields": "None",
@@ -69,6 +69,7 @@ def create_order(amount: float = 0.00, order_id: str = 'Идентификато
     if response['status'] == 200:
         result['success'] = True
         result['invoice_id'] = response['data']['id']
+        result['url'] = response['data']['url']
     return result
 
 
